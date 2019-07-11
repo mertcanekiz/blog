@@ -27,7 +27,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('profile/', [
     'middleware' => 'auth',
-    'uses' => 'ProfileController@showProfile'
+    'uses' => 'ProfileController@show'
 ])->name('profile');
 
-Route::get('/profile/{username}', 'ProfileController@showProfile')->name('profileWithUsername');
+
+Route::get('/profile/edit', 'ProfileController@edit');
+Route::post('/profile/edit', [
+    'uses' => 'ProfileController@update'
+])->name('editProfile');
+Route::get('/profile/{username}', 'ProfileController@show')->name('profileWithUsername');

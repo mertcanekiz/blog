@@ -10,8 +10,12 @@
                 <div><h1>{{ $user->username }}</h1></div>
                 <div><strong>{{ $user->name }}</strong></div>
                 <div><p>{{ $user->profile->bio }}</p></div>
+                <div>
+                @auth
+                    <a href="{{ route('editProfile') }}" class="btn btn-outline-primary">Edit profile</a>
+                @endauth
+                </div>
             </div>
-            <div class="col-sm-2"></div>
         </div>
         @auth
 {{--            Logged in--}}

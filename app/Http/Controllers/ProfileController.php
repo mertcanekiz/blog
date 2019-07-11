@@ -15,7 +15,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showProfile($username=null)
+    public function show($username=null)
     {
         if (isset($username)) {
            $user = User::where('username', $username)->first();
@@ -24,7 +24,7 @@ class ProfileController extends Controller
            } else {
                return abort(404);
            }
-        return view('profile', ['user' => $user]);
+//        return view('profile', ['user' => $user]);
         } else {
             if (Auth::user() != null) {
                 return view('profile', ['user' => Auth::user()]);
@@ -56,37 +56,40 @@ class ProfileController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\UserProfile  $userProfile
-     * @return \Illuminate\Http\Response
-     */
-    public function show(UserProfile $userProfile)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\UserProfile  $userProfile
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserProfile $userProfile)
+    public function edit()
     {
-        //
+        $user = Auth::user();
+        return view('editProfile', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserProfile  $userProfile
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserProfile $userProfile)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'bio' => 'nullable|max:255',
+            'avatar' => 'nullable|max:255'
+        ]);
+        $user = Auth::user();
+        $profile = $user->profile;
+        if ($validatedData['bio'] != '') {
+            $profile->bio = $validatedData['bio'];
+        }
+        if ($validatedData['avatar'] != '') {
+            $profile->avatar = $validatedData['avatar'];
+        }
+        $profile->save();
+        return redirect(route('profile'));
     }
 
     /**
