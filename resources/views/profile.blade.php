@@ -1,0 +1,26 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container" style="max-width: 975px">
+        <div class="row mx-5">
+            <div class="col-sm-auto"><img src="{{ $user->profile->avatar }}" alt="avatar"
+                                          class="rounded-circle d-flex mx-auto"></div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-auto pt-3 text-center text-sm-left">
+                <div><h1>{{ $user->username }}</h1></div>
+                <div><strong>{{ $user->name }}</strong></div>
+                <div><p>{{ $user->profile->bio }}</p></div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        @auth
+{{--            Logged in--}}
+        @else
+{{--            Not logged in--}}
+        @endauth
+        <div class="row mt-5 mx-3 mx-sm-5">
+            <h3>Posts</h3>
+            <div id="posts"></div>
+        </div>
+    </div>
+@endsection

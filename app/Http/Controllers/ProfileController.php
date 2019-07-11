@@ -4,30 +4,34 @@ namespace App\Http\Controllers;
 
 use App\UserProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class ProfileController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function showProfile()
+    public function showProfile($username=null)
     {
-        $user = Auth::user();
-        $profile_id = $user->profile;
-        $profile = UserProfile::find($profile_id)->first();
-        return view('profile', ['user' => $user, 'profile' => $profile]);
+        if (isset($username)) {
+           $user = User::where('username', $username)->first();
+           if ($user != null) {
+               return view('profile', ['user' => $user]);
+           } else {
+               return abort(404);
+           }
+        return view('profile', ['user' => $user]);
+        } else {
+            if (Auth::user() != null) {
+                return view('profile', ['user' => Auth::user()]);
+            } else {
+                return route('login');
+            }
+        }
     }
 
     /**

@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    if (Auth::user()) {
+        return view('home');
+    }
     return view('welcome');
 });
 
@@ -22,4 +25,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/profile', 'ProfileController@showProfile')->name('profile');
+Route::get('profile/', [
+    'middleware' => 'auth',
+    'uses' => 'ProfileController@showProfile'
+])->name('profile');
+
+Route::get('/profile/{username}', 'ProfileController@showProfile')->name('profileWithUsername');
