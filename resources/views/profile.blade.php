@@ -12,7 +12,9 @@
                 <div><p>{{ $user->profile->bio }}</p></div>
                 <div>
                 @auth
+                    @if($user === Auth::user())
                     <a href="{{ route('editProfile') }}" class="btn btn-outline-primary">Edit profile</a>
+                    @endif
                 @endauth
                 </div>
             </div>
