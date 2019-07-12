@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if (Auth::user()) {
-        return view('home');
+        return view('home', ['posts' => \App\TextPost::all()]);
     }
     return view('welcome');
-});
+})->name('home');
 
 Auth::routes();
 
@@ -36,3 +36,8 @@ Route::group(['prefix' => 'profile'], function()
     // Show profile with username (no auth needed)
     Route::get('{username}', 'ProfileController@show')->name('profileWithUsername');
 });
+
+Route::resource(
+    'posts', 'PostController')->only([
+        'create', 'store'
+]);

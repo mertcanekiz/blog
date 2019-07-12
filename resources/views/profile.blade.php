@@ -27,6 +27,12 @@
         <div class="row mt-5 mx-3 mx-sm-5">
             <div class="mx-5 w-100">
                 <h3>Posts</h3>
+                {{ $posts}}
+                {{ $posts }}
+                @foreach ($posts as $post)
+                    @component('post', ['post' => $post])
+                    @endcomponent
+                @endforeach
             </div>
             <div id="posts"></div>
         </div>

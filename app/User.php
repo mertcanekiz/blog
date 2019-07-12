@@ -42,4 +42,9 @@ class User extends Authenticatable
     {
         return $this->embedsOne('App\UserProfile');
     }
+
+    public function posts()
+    {
+        return $this->hasMany('App\TextPost');
+    }
 }
