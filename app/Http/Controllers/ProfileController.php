@@ -68,6 +68,11 @@ class ProfileController extends Controller
         return view('editProfile', ['user' => $user]);
     }
 
+    public function private()
+    {
+        return view('welcome');
+    }
+
     /**
      * Update the specified resource in storage.
      *

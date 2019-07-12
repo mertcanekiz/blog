@@ -12,11 +12,11 @@
                 </ul>
             </div>
         @endif
-        <form method="POST" action="{{ route('editProfile') }}">
+        <form method="POST" action="{{ route('updateProfile') }}">
             @csrf
             <div class="form-group">
                 <label class="col-form-label" for="bio">Bio</label>
-                <textarea class="@error('bio') is-invalid @enderror form-control" id="bio" name="bio"></textarea>
+                <textarea class="@error('bio') is-invalid @enderror form-control" id="bio" name="bio">{{ Auth::user()->profile->bio }}</textarea>
             </div>
             <div class="form-group">
                 <label for="avatar" class="@error('avatar') is-invalid @enderror col-form-label">Profile picture</label>

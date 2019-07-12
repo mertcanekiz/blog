@@ -23,16 +23,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('profile/', [
-    'middleware' => 'auth',
-    'uses' => 'ProfileController@show'
-])->name('profile');
-
-
-Route::get('/profile/edit', 'ProfileController@edit');
-Route::post('/profile/edit', [
-    'uses' => 'ProfileController@update'
-])->name('editProfile');
-Route::get('/profile/{username}', 'ProfileController@show')->name('profileWithUsername');
+// Profile routes
+Route::group(['prefix' => 'profile'], function()
+{
+    Route::group(['middleware' => 'auth'], function()
+    {
+        Route::get('edit/', 'ProfileController@edit')->name('editProfile');
+        Route::post('edit/', 'ProfileController@update')->name('updateProfile');
+        // Show user's own profile without username
+        Route::get('/', 'ProfileController@show')->name('profile');
+    });
+    // Show profile with username (no auth needed)
+    Route::get('{username}', 'ProfileController@show')->name('profileWithUsername');
+});
