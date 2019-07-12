@@ -1,0 +1,6 @@
+[x] User authentication
+[x] User profile page
+    [x] Edit profile
+[ ] Add post
+[ ] Comments
+[ ] Followers

@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container" style="max-width: 975px">
-        <div class="row mx-5">
+        <div class="row mx-sm-5">
             <div class="col-sm-auto"><img src="{{ $user->profile->avatar }}" alt="avatar"
-                                          class="rounded-circle d-flex mx-auto"></div>
+                                          class="rounded-circle d-flex mx-auto w-100" style="max-width:200px"></div>
             <div class="col-sm-1"></div>
             <div class="col-sm-auto pt-3 text-center text-sm-left">
                 <div><h1>{{ $user->username }}</h1></div>
@@ -25,7 +25,9 @@
 {{--            Not logged in--}}
         @endauth
         <div class="row mt-5 mx-3 mx-sm-5">
-            <h3>Posts</h3>
+            <div class="mx-5 w-100">
+                <h3>Posts</h3>
+            </div>
             <div id="posts"></div>
         </div>
     </div>
