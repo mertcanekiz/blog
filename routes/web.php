@@ -13,10 +13,11 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\TextPost;
 
 Route::get('/', function () {
     if (Auth::user()) {
-        return view('home', ['posts' => \App\TextPost::all()]);
+        return view('home', ['posts' => TextPost::orderBy('created_at', 'desc')->get()]);
     }
     return view('welcome');
 })->name('home');

@@ -15,8 +15,8 @@ class TextPost extends Eloquent
         'title', 'content'
     ];
 
-    public function author()
+    public function user()
     {
-        return $this->belongsTo('App\User', 'author_id');
+        return $this->belongsTo('App\User');
     }
 }

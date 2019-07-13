@@ -46,8 +46,7 @@ class PostController extends Controller
             'title' => $validatedData['title'],
             'content' => $validatedData['content']
         ]);
-        $post->author()->associate($user);
-        $post->save();
+        $user->posts()->save($post);
         return redirect(route('home'));
     }
 

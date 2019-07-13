@@ -9,18 +9,11 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-
-                </div>
-            </div>
+            @foreach ($posts as $post)
+                @component('post', ['post' => $post])
+                @endcomponent
+            @endforeach
         </div>
-        @foreach ($posts as $post)
-            @component('post', ['post' => $post])
-            @endcomponent
-        @endforeach
     </div>
 </div>
 @endsection

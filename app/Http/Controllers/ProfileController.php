@@ -21,7 +21,7 @@ class ProfileController extends Controller
         if (isset($username)) {
            $user = User::where('username', $username)->first();
            if ($user != null) {
-               return view('profile', ['user' => $user]);
+               return view('profile', ['user' => $user, 'posts' => $user->posts->sortByDesc('created_at')]);
            } else {
                return abort(404);
            }
@@ -31,8 +31,6 @@ class ProfileController extends Controller
                 $user = User::where('username', Auth::user()->username)->first();
                 $posts = $user->posts;
                 return view('profile', ['user' => $user, 'posts' => $posts]);
-            } else {
-                return route('login');
             }
         }
     }
