@@ -42,3 +42,5 @@ Route::resource(
     'posts', 'PostController')->only([
         'create', 'store'
 ]);
+
+Route::post('/posts/{id}/comment', 'PostController@comment')->name('comment');

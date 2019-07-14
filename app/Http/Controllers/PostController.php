@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -59,6 +61,21 @@ class PostController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function comment(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'content' => 'required|max:255'
+        ]);
+        $user = Auth::user();
+        $post = TextPost::find($id);
+        $comment = new Comment([
+            'content' => $validatedData['content']
+        ]);
+        $user->comments()->save($comment);
+        $post->comments()->save($comment);
+        return JsonResponse::create(['success' => true]);
     }
 
     /**

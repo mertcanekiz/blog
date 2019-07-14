@@ -28,7 +28,7 @@
 {{--            <div class="mx-5 w-100">--}}
                 <h3>Posts</h3>
                 @foreach ($posts as $post)
-                    @component('post', ['post' => $post])
+                    @component('components.post', ['post' => $post])
                     @endcomponent
                 @endforeach
 {{--            </div>--}}

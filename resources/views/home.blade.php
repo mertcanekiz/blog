@@ -10,7 +10,7 @@
                 </div>
             @endif
             @foreach ($posts as $post)
-                @component('post', ['post' => $post])
+                @component('components.post', ['post' => $post])
                 @endcomponent
             @endforeach
         </div>

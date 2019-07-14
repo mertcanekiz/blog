@@ -4,7 +4,7 @@ namespace App;
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class TextPost extends Eloquent
+class Comment extends Eloquent
 {
     /**
      * The attributes that are mass assignable.
@@ -12,16 +12,16 @@ class TextPost extends Eloquent
      * @var array
      */
     protected $fillable = [
-        'title', 'content'
+        'content'
     ];
+
+    public function text_post()
+    {
+        return $this->belongsTo('App\TextPost');
+    }
 
     public function user()
     {
         return $this->belongsTo('App\User');
-    }
-
-    public function comments()
-    {
-        return $this->hasMany('App\Comment');
     }
 }
