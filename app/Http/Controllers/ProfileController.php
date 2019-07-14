@@ -28,9 +28,8 @@ class ProfileController extends Controller
 //        return view('profile', ['user' => $user]);
         } else {
             if (Auth::user() != null) {
-                $user = User::where('username', Auth::user()->username)->first();
-                $posts = $user->posts;
-                return view('profile', ['user' => $user, 'posts' => $posts]);
+                $user = Auth::user();
+                return view('profile', ['user' => $user, 'posts' => $user->posts->sortByDesc('created_at')]);
             }
         }
     }
