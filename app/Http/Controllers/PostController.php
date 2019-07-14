@@ -75,7 +75,7 @@ class PostController extends Controller
         ]);
         $user->comments()->save($comment);
         $post->comments()->save($comment);
-        return JsonResponse::create(['success' => true]);
+        return redirect()->back();
     }
 
     /**

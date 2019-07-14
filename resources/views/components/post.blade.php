@@ -28,6 +28,4 @@
                 </div>
             </form>
         </div>
-
-        {{ $slot }}
     </div>
