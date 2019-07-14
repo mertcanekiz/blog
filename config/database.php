@@ -101,6 +101,15 @@ return [
             'options' => [
                 'database' => 'admin'
             ]
+        ],
+
+        'mongodb_atlas' => [
+            'driver' => 'mongodb',
+            'dsn' => 'mongodb+srv://admin:admin@cluster0-ciqnn.mongodb.net/test?retryWrites=true&w=majority',
+            'database' => env('DB_DATABASE', 'laravel'),
+            'options' => [
+                'database' => 'admin'
+            ]
         ]
 
     ],
