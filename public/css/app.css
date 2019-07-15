@@ -10649,6 +10649,11 @@ a.text-dark:focus {
 }
 
 .comment:hover > .delete-form {
-  display: block;
+  display: flex;
+  position: absolute;
+  right: 1.4rem;
+  padding-left: 3.5rem;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, white 56%, white 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#00ffffff", endColorstr="#ffffff",GradientType=1 );
 }
 
