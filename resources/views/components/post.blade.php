@@ -33,6 +33,7 @@
                     @endforeach
                 @endif
             </div>
+            @auth
             <form method="post" action="{{ route('comment', ['id' => $post->id]) }}">
                 @csrf
                 <div class="form-row">
@@ -45,5 +46,6 @@
 
                 </div>
             </form>
+            @endauth
         </div>
     </div>
