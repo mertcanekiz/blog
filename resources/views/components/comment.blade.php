@@ -3,6 +3,7 @@
         <a href="{{ route('profileWithUsername', ['username' => $comment->user->username]) }}"><strong>{{ $comment->user->username }}</strong></a> {{ $comment->content }}
     </div>
     <div class="delete-form" id="delete-form-{{$comment->id}}">
+        @auth
         @if($comment->user->id == Auth::user()->id)
             <form method="post" action="{{ route('deleteComment', ['id', $comment->text_post->id]) }}">
                 @csrf
@@ -10,5 +11,6 @@
                 <a href="#" class="delete-comment-link">Delete</a>
             </form>
         @endif
+        @endauth
     </div>
 </div>

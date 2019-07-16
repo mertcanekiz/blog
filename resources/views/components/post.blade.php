@@ -7,6 +7,7 @@
             <h3 class="card-title">{{ $post->title }}</h3>
             </div>
                 <div class="col-1">
+                    @auth
                   @if($post->user->id == Auth::user()->id)
             <form action="{{ route('posts.destroy', ['id' => $post->id]) }}" method="POST">
                     <input type="hidden" name="_method" value="DELETE">
@@ -15,6 +16,7 @@
                 <td><button type="submit" class="btn btn-primary btn-sm">X</button></td>
             </form>
                     @endif
+                        @endauth
                 </div>
             </div>
         <div class="card-subtitle pb-3 mb-3 border-bottom">
