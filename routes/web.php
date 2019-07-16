@@ -44,6 +44,7 @@ Route::resource(
 ]);
 
 Route::post('/posts/{id}/comment', 'PostController@comment')->name('comment');
+Route::post('/posts/{id}/deleteComment', 'PostController@deleteComment')->name('deleteComment');
 Route::resource(
     'imageposts', 'imagePostController')->only([
     'create', 'store'
