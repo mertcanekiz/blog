@@ -78,6 +78,17 @@ class PostController extends Controller
         return redirect()->back();
     }
 
+    public function deleteComment(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'comment_id' => 'required'
+        ]);
+        $post = TextPost::find($id);
+        $comment = Comment::find($validatedData['comment_id']);
+        $comment->delete();
+        return redirect()->back();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
