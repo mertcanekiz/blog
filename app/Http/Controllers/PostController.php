@@ -85,7 +85,9 @@ class PostController extends Controller
         ]);
         $post = TextPost::find($id);
         $comment = Comment::find($validatedData['comment_id']);
-        $comment->delete();
+        if ($comment->user->id == Auth::user()->id){
+            $comment->delete();
+        }
         return redirect()->back();
     }
 
@@ -118,8 +120,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $post = TextPost::find($id);
+        if ($post->user->id == Auth::user()->id){
+            $post->delete();
+
+        }
+        return redirect()->back();
     }
 }

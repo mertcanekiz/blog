@@ -40,7 +40,7 @@ Route::group(['prefix' => 'profile'], function()
 
 Route::resource(
     'posts', 'PostController')->only([
-        'create', 'store'
+        'create', 'store' , 'destroy'
 ]);
 
 Route::post('/posts/{id}/comment', 'PostController@comment')->name('comment');
