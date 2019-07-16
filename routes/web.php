@@ -44,3 +44,10 @@ Route::resource(
 ]);
 
 Route::post('/posts/{id}/comment', 'PostController@comment')->name('comment');
+Route::resource(
+    'imageposts', 'imagePostController')->only([
+    'create', 'store'
+]);
+Route::get('/selectmethod',function (){
+    return view("selectMethod");
+});
