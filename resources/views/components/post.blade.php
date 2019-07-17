@@ -8,12 +8,8 @@
             </div>
                 <div class="col-2">
                     @auth
-                          @if($post->user->id == Auth::user()->id)
-                            <form action="{{ route('posts.destroy', ['id' => $post->id]) }}" method="POST">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                @csrf
-                                <button type="submit" class="btn text-muted"><i class="far fa-trash-alt"></i></button>
-                            </form>
+                        @if($post->user->id == Auth::user()->id)
+                            <button type="button" class="btn text-muted"  data-toggle="modal" data-target="#modal-{{$post->id}}"><i class="far fa-trash-alt"></i></button>
                         @endif
                     @endauth
                 </div>
@@ -61,5 +57,33 @@
                 </div>
             </form>
             @endauth
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this post?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      @if($post->user->id == Auth::user()->id)
+                        <form action="{{ route('posts.destroy', ['id' => $post->id]) }}" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>

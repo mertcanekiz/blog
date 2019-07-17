@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="max-width: 975px">
+    <div class="container px-0 px-sm-3" style="max-width: 975px">
         <div class="row mx-sm-5">
-            <div class="col-sm-auto"><img src="{{ $user->profile->avatar }}" alt="avatar"
+            <div class="col-sm-auto px-0"><img src="{{ $user->profile->avatar }}" alt="avatar"
                                           class="rounded-circle d-flex mx-auto w-100" style="max-width:200px"></div>
             <div class="col-sm-1"></div>
             <div class="col-sm-auto pt-3 text-center text-sm-left">
@@ -24,15 +24,13 @@
         @else
 {{--            Not logged in--}}
         @endauth
-        <div class="row mt-5 mx-3 mx-sm-5">
-{{--            <div class="mx-5 w-100">--}}
-                <h3>Posts</h3>
+        <div class="row mt-4">
+            <div class="col-md-10">
                 @foreach ($posts as $post)
                     @component('components.post', ['post' => $post])
                     @endcomponent
                 @endforeach
-{{--            </div>--}}
-            <div id="posts"></div>
+            </div>
         </div>
     </div>
 @endsection
