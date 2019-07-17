@@ -1,5 +1,5 @@
 
-    <div class="card w-100 mb-3">
+    <div class="card w-100 mb-3" id="post-{{$post->id}}">
         <div class="card-body">
             <div class="row">
             <div class="col-10">
@@ -25,16 +25,17 @@
             <div class="card-text pb-3 mb-3 border-bottom">
                 <div class="row">
                     <div class="col text-center">
-                        <a class="text-dark" href="#"><i class="far fa-comment"></i></a>
+                        <button type="button" class="btn" data-toggle="collapse" data-target="#comment-{{$post->id}}"><i class="far fa-comment"></i></button>
                     </div>
                     <div class="col text-center">
-                        <a class="text-dark" href="#"><i class="far fa-heart"></i></a>
+                        <button class="btn"><i class="far fa-heart"></i></button>
                     </div>
                     <div class="col text-center">
-                        <a class="text-dark" href="#"><i class="far fa-bookmark"></i></a>
+                        <button class="btn"><i class="far fa-bookmark"></i></button>
                     </div>
                 </div>
             </div>
+            <div class="collapse" id="comment-{{$post->id}}">
             <div class="mb-3" id="comments">
                 @if(count($post->comments) == 0)
                     <span class="text-muted">No comments yet</span>
@@ -45,8 +46,9 @@
                     @endforeach
                 @endif
             </div>
+            </div>
             @auth
-            <form method="post" action="{{ route('comment', ['id' => $post->id]) }}">
+            <form method="post" action="" id="comment-form-{{$post->id}}">
                 @csrf
                 <div class="form-row">
                     <div class="col-8 col-sm-10">
@@ -55,7 +57,7 @@
                     <div class="col-4 col-sm-2">
                         <button class="btn btn-block h-100 btn-outline-success" type="submit">Send</button>
                     </div>
-
+                    <input type="hidden" name="id" value="{{$post->id}}">
                 </div>
             </form>
             @endauth

@@ -73,7 +73,7 @@ class PostController extends Controller
         $comment = Comment::create($validatedData);
         $user->comments()->save($comment);
         $post->comments()->save($comment);
-        return redirect()->back();
+        return view('components.comment', ['comment' => $comment]);
     }
 
     public function deleteComment(Request $request, $id)
