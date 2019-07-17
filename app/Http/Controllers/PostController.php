@@ -70,9 +70,7 @@ class PostController extends Controller
         ]);
         $user = Auth::user();
         $post = TextPost::find($id);
-        $comment = new Comment([
-            'content' => $validatedData['content']
-        ]);
+        $comment = Comment::create($validatedData);
         $user->comments()->save($comment);
         $post->comments()->save($comment);
         return redirect()->back();

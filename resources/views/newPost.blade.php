@@ -24,6 +24,9 @@
                             <textarea name="content" id="content" rows="4" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
+                            <input type="text" class="form-control" id="tags" name="tags" data-role="tagsinput">
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-outline-success">Submit</button>
                         </div>
                     </form>
