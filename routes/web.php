@@ -52,3 +52,5 @@ Route::resource(
 Route::get('/selectmethod',function (){
     return view("selectMethod");
 });
+
+Route::get('/posts/{id}/like', ['uses' => 'PostController@like'])->name('likePost');

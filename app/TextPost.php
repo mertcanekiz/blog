@@ -24,4 +24,9 @@ class TextPost extends Eloquent
     {
         return $this->hasMany('App\Comment');
     }
+
+    public function likedBy()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }

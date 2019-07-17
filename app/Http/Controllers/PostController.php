@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use Faker\Provider\Text;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -87,6 +88,14 @@ class PostController extends Controller
             $comment->delete();
         }
         return redirect()->back();
+    }
+
+    public function like($id)
+    {
+        $user = Auth::user();
+        $post = TextPost::find($id);
+        $post->likedBy()->attach($user->id);
+        return response()->json(['post_id' => $post->id]);
     }
 
     /**
