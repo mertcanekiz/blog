@@ -90,12 +90,11 @@ class PostController extends Controller
         return redirect()->back();
     }
 
-    public function like($id)
+    public function like(Request $request, $id)
     {
         $user = Auth::user();
         $post = TextPost::find($id);
         $post->likedBy()->attach($user->id);
-        return response()->json(['post_id' => $post->id]);
     }
 
     /**
