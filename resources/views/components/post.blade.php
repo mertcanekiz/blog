@@ -2,10 +2,16 @@
     <div class="card w-100 mb-3">
         <div class="card-body">
             <div class="row">
-            <div class="col-11">
+            <div class="col-9">
 
             <h3 class="card-title">{{ $post->title }}</h3>
             </div>
+                <div class="col-1">
+                   <i class="far fa-bookmark"></i>
+                </div>
+                <div class="col-1">
+                    <i class="far fa-star"></i>
+                </div>
                 <div class="col-1">
                     @auth
                   @if($post->user->id == Auth::user()->id)

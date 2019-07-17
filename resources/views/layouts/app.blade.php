@@ -19,6 +19,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -98,6 +99,16 @@
             $('.delete-comment-link').click(function(event) {
                 event.preventDefault();
                 $(this).closest('form').submit();
+            })
+            $('.fa-bookmark, .fa-star').click(function() {
+                if($(this).hasClass("far")){
+                    $(this).removeClass("far");
+                    $(this).addClass("fas");
+
+                } else {
+                    $(this).removeClass("fas");
+                    $(this).addClass("far");
+                }
             })
         })
     </script>
