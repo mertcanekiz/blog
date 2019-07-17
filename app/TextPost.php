@@ -29,4 +29,14 @@ class TextPost extends Eloquent
     {
         return $this->belongsToMany('App\User');
     }
+
+    // this is a recommended way to declare event handlers
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($post) { // before delete() method call this
+            $post->comments()->delete();
+            // do the rest of the cleanup...
+        });
+    }
 }

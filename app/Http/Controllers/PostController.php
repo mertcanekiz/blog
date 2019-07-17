@@ -71,9 +71,11 @@ class PostController extends Controller
         ]);
         $user = Auth::user();
         $post = TextPost::find($id);
-        $comment = Comment::create($validatedData);
-        $user->comments()->save($comment);
-        $post->comments()->save($comment);
+        if ($user != null && $post != null) {
+            $comment = Comment::create($validatedData);
+            $user->comments()->save($comment);
+            $post->comments()->save($comment);
+        }
         return view('components.comment', ['comment' => $comment]);
     }
 
