@@ -19,6 +19,20 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    $('[id^="delete-button-"]').click(function(event) {
+        $('#modal-delete').modal();
+        let form = $(this).parent().find('#delete-form');
+        $('#modal-delete').find('.modal-footer').html(`
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            ${form.html()}
+        `)
+    });
+    $("body").on("submit", "form", function() {
+        $(this).submit(function() {
+            return false;
+        });
+        return true;
+    });
     $('[id^="comment-form-"]').submit(function(event) {
         event.preventDefault();
         let inputs = $(this).find(':input');
