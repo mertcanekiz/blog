@@ -100,7 +100,7 @@
                 event.preventDefault();
                 $(this).closest('form').submit();
             })
-            $('.fa-bookmark, .fa-star').click(function() {
+            $('.fa-comment, .fa-heart, .fa-bookmark').click(function() {
                 if($(this).hasClass("far")){
                     $(this).removeClass("far");
                     $(this).addClass("fas");
