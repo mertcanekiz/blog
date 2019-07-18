@@ -33,7 +33,7 @@
                         <button type="button" class="btn" data-toggle="collapse" data-target="#comment-{{$post->id}}"><i class="far fa-comment"></i></button>
                     </div>
                     <div class="col text-center">
-                        <button id="likebutton-{{$post->id}}" class="btn"><i class="far fa-heart"></i></button>
+                        <button id="likebutton-{{$post->id}}" class="btn"><i class="@auth @if($post->likedBy->find(Auth::user()->id)) fas @else far @endif @elseauth far @endauth fa-heart"></i></button>
                     </div>
                     <div class="col text-center">
                         <button class="btn"><i class="far fa-bookmark"></i></button>
