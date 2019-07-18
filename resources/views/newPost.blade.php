@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group">
                             <label for="content" class="col-form-label">Content</label>
-                            <textarea name="content" id="content" rows="4" class="form-control"></textarea>
+                            <textarea name="content" id="snote"></textarea>
                         </div>
 
                         <div class="form-group">

@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $('#snote').summernote();
     $('.delete-comment-link').click(function(event) {
         event.preventDefault();
         $(this).closest('form').submit();

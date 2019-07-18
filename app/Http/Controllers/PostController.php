@@ -133,7 +133,7 @@ class PostController extends Controller
     }
 
     public function likedpost(){
-        return view('likePost', ['posts' => Auth::user()->likedPosts]);
+        return view('likePost', ['posts' => Auth::user()->likedPosts->sortByDesc('created_at')]);
     }
     /**
      * Update the specified resource in storage.
