@@ -53,11 +53,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
-    public function likedPosts()
-    {
-        return $this->hasMany('App\TextPost', 'likedBy', 'likedPosts');
-    }
-
     public function bookmarkedPosts()
     {
         return $this->hasMany('App\TextPost');
