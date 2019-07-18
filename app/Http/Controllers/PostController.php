@@ -133,7 +133,7 @@ class PostController extends Controller
     }
 
     public function likedpost(){
-        return view('likePost', ['posts' => TextPost::findMany(Auth::user()->likedPosts)]);
+        return view('likePost', ['posts' => Auth::user()->likedPosts]);
     }
     /**
      * Update the specified resource in storage.
