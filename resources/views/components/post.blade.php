@@ -36,7 +36,7 @@
                         <button id="likebutton-{{$post->id}}" class="btn"><i class="@auth @if($post->likedBy->find(Auth::user()->id)) fas @else far @endif @elseauth far @endauth fa-heart"></i></button>
                     </div>
                     <div class="col text-center">
-                        <button class="btn"><i class="far fa-bookmark"></i></button>
+                        <button id="bookmarkbutton-{{$post->id}}" class="btn"><i class="@auth @if($post->bookmarkedBy->find(Auth::user()->id)) fas @else far @endif @elseauth far @endauth fa-bookmark"></i></button>
                     </div>
                 </div>
             </div>

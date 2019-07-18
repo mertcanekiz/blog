@@ -27,9 +27,12 @@ class TextPost extends Eloquent
 
     public function likedBy()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User', null, 'likedPosts', 'likedBy');
     }
-
+    public function bookmarkedBy()
+    {
+        return $this->belongsToMany('App\User', null, 'bookmarkedPosts', 'bookmarkedBy');
+    }
     // this is a recommended way to declare event handlers
     public static function boot() {
         parent::boot();

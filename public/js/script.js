@@ -73,4 +73,23 @@ $(document).ready(function() {
             }
         });
     });
+    $('[id^="bookmarkbutton"]').click(function(event) {
+        let id = $(this).attr('id').replace('bookmarkbutton-', '');
+        let url = `/posts/${id}/bookmark`;
+        $.ajax({
+            type:'POST',
+            url:url,
+            success:function(data){
+                let $post = $(`#post-${id}`);
+                let button = $post.find('i.fa-bookmark');
+                if (data.bookmarked) {
+                    $(button).removeClass("far");
+                    $(button).addClass("fas");
+                } else {
+                    $(button).removeClass("fas");
+                    $(button).addClass("far");
+                }
+            }
+        });
+    });
 });

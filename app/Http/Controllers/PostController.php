@@ -106,11 +106,20 @@ class PostController extends Controller
         }
         return response()->json(['liked' => $liked]);
     }
-    public function deletelike(Request $request, $id){
-        $user = Auth::user();
-        $post = TextPost::find($id);
-        $post->likedBy()->detach($user->id);
 
+    public function bookmark(Request $request, $id)
+    {
+        $user_id = Auth::user()->id;
+        $post = TextPost::find($id);
+        $user = $post->bookmarkedBy->find($user_id);
+        $bookmarked = false;
+        if ($user == null){
+            $post->bookmarkedBy()->attach($user_id);
+            $bookmarked = true;
+        } else {
+            $post->bookmarkedBy()->detach($user_id);
+        }
+        return response()->json(['bookmarked' => $bookmarked]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -123,6 +132,9 @@ class PostController extends Controller
         //
     }
 
+    public function likedpost(){
+        return view('likePost', ['posts' => TextPost::find(Auth::user()->likedPosts)]);
+    }
     /**
      * Update the specified resource in storage.
      *

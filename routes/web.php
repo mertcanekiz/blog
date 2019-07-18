@@ -57,3 +57,6 @@ Route::middleware('auth', 'throttle:100,1')->group(function () {
 });
 
 Route::post('/posts/{id}/like', ['uses' => 'PostController@like'])->name('likePost');
+Route::post('/posts/{id}/bookmark', ['uses' => 'PostController@bookmark'])->name('bookmarkPost');
+
+Route::get('likedposts' , 'PostController@likedpost')->name('likedpost');
