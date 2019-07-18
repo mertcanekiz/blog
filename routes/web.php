@@ -56,4 +56,4 @@ Route::middleware('auth', 'throttle:100,1')->group(function () {
 
 });
 
-Route::get('/posts/{id}/like', ['uses' => 'PostController@like'])->name('likePost');
+Route::post('/posts/{id}/like', ['uses' => 'PostController@like'])->name('likePost');

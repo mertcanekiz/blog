@@ -3,17 +3,6 @@ $(document).ready(function() {
         event.preventDefault();
         $(this).closest('form').submit();
     });
-    $('.fa-comment, .fa-heart, .fa-bookmark').closest('button').click(function() {
-        let el = $(this).find('.far, .fas');
-        if($(el).hasClass("far")){
-            $(el).removeClass("far");
-            $(el).addClass("fas");
-
-        } else {
-            $(el).removeClass("fas");
-            $(el).addClass("far");
-        }
-    });
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -62,6 +51,26 @@ $(document).ready(function() {
 
             }
 
+
+        });
+    });
+    $('[id^="likebutton"]').click(function(event) {
+        let id = $(this).attr('id').replace('likebutton-', '');
+        let url = `/posts/${id}/like`;
+        $.ajax({
+            type:'POST',
+            url:url,
+            success:function(data){
+                let $post = $(`#post-${id}`);
+                let button = $post.find('i.fa-heart');
+                if (data.liked) {
+                    $(button).removeClass("far");
+                    $(button).addClass("fas");
+                } else {
+                    $(button).removeClass("fas");
+                    $(button).addClass("far");
+                }
+            }
         });
     });
 });

@@ -94,11 +94,24 @@ class PostController extends Controller
 
     public function like(Request $request, $id)
     {
+        $user_id = Auth::user()->id;
+        $post = TextPost::find($id);
+        $user = $post->likedBy->find($user_id);
+        $liked = false;
+        if ($user == null){
+            $post->likedBy()->attach($user_id);
+            $liked = true;
+        } else {
+            $post->likedBy()->detach($user_id);
+        }
+        return response()->json(['liked' => $liked]);
+    }
+    public function deletelike(Request $request, $id){
         $user = Auth::user();
         $post = TextPost::find($id);
-        $post->likedBy()->attach($user->id);
-    }
+        $post->likedBy()->detach($user->id);
 
+    }
     /**
      * Show the form for editing the specified resource.
      *

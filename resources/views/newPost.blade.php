@@ -23,6 +23,7 @@
                             <label for="content" class="col-form-label">Content</label>
                             <textarea name="content" id="content" rows="4" class="form-control"></textarea>
                         </div>
+
                         <div class="form-group">
                             <input type="text" class="form-control" id="tags" name="tags" data-role="tagsinput">
                         </div>
