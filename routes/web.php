@@ -44,7 +44,7 @@ Route::middleware('auth', 'throttle:100,1')->group(function () {
 
     Route::resource(
         'posts', 'PostController')->only([
-        'create', 'store' , 'destroy'
+        'create', 'store' , 'destroy', 'show'
     ]);
 
     Route::post('/posts/{id}/comment', 'PostController@comment')->name('comment');
@@ -61,3 +61,6 @@ Route::post('/posts/{id}/bookmark', ['uses' => 'PostController@bookmark'])->name
 
 Route::get('likedposts' , 'PostController@likedpost')->name('likedpost');
 Route::get('bookmarkedposts' , 'PostController@bookmarkedpost')->name('bookmarkedpost');
+Route::get('/notifications', function() {
+    return view('notifications');
+})->name('notifications');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Notification;
 use Faker\Provider\Text;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -72,7 +73,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = TextPost::find($id);
+        return view('singlePost', ['post' => $post]);
     }
 
     public function comment(Request $request, $id)
@@ -105,12 +107,19 @@ class PostController extends Controller
 
     public function like(Request $request, $id)
     {
-        $user_id = Auth::user()->id;
+        $auth_user = Auth::user();
+        $user_id = $auth_user->id;
+        $username = $auth_user->username;
         $post = TextPost::find($id);
         $user = $post->likedBy->find($user_id);
         $liked = false;
         if ($user == null){
             $post->likedBy()->attach($user_id);
+            $post->user->notifications()->save(Notification::create([
+                'content' => "<strong>$auth_user->username</strong> liked your post",
+                'is_read' => false,
+                'url' => route('posts.show', ['id' => $post->id])
+            ]));
             $liked = true;
         } else {
             $post->likedBy()->detach($user_id);
