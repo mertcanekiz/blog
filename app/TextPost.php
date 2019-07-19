@@ -33,6 +33,10 @@ class TextPost extends Eloquent
     {
         return $this->belongsToMany('App\User', null, 'bookmarkedPosts', 'bookmarkedBy');
     }
+
+    public function tags() {
+        return $this->hasMany('App\Tag', 'post_ids');
+    }
     // this is a recommended way to declare event handlers
     public static function boot() {
         parent::boot();
