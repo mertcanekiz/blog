@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\TextPost;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -42,13 +43,20 @@ class PostController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
-            'content' => 'required'
+            'content' => 'required',
+            'tags' => 'required'
         ]);
         $user = User::find(Auth::user()->id);
-        $post = new TextPost([
+        $post = TextPost::create([
             'title' => $validatedData['title'],
             'content' => $validatedData['content']
         ]);
+        foreach (explode(',', $validatedData['tags']) as $tag_data) {
+            $tag = Tag::create([
+                'name' => $tag_data
+            ]);
+            $tag->posts()->attach($post);
+        }
         $user->posts()->save($post);
         return redirect(route('home'));
     }

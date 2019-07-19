@@ -12,6 +12,6 @@ class Tag extends Eloquent
 
     public function posts()
     {
-        return $this->belongsToMany('App\TextPost', null, 'post_ids', 'tag_ids');
+        return $this->belongsToMany('App\TextPost', null, 'tag_ids', 'post_ids');
     }
 }
