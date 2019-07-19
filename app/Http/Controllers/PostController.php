@@ -52,9 +52,12 @@ class PostController extends Controller
             'content' => $validatedData['content']
         ]);
         foreach (explode(',', $validatedData['tags']) as $tag_data) {
-            $tag = Tag::create([
-                'name' => $tag_data
-            ]);
+            $tag = Tag::where('name', '=', $tag_data)->first();
+            if ($tag == null) {
+                $tag = Tag::create([
+                    'name' => $tag_data
+                ]);
+            }
             $tag->posts()->attach($post);
         }
         $user->posts()->save($post);
