@@ -62,4 +62,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\TextPost', 'bookmarkedBy');
     }
+    public function notifications()
+    {
+        return $this->hasMany('App\Notification');
+    }
 }
