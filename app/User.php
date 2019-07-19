@@ -60,6 +60,6 @@ class User extends Authenticatable
 
     public function bookmarkedPosts()
     {
-        return $this->hasMany('App\TextPost');
+        return $this->hasMany('App\TextPost', 'bookmarkedBy');
     }
 }

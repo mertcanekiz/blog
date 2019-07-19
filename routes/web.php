@@ -60,3 +60,4 @@ Route::post('/posts/{id}/like', ['uses' => 'PostController@like'])->name('likePo
 Route::post('/posts/{id}/bookmark', ['uses' => 'PostController@bookmark'])->name('bookmarkPost');
 
 Route::get('likedposts' , 'PostController@likedpost')->name('likedpost');
+Route::get('bookmarkedposts' , 'PostController@bookmarkedpost')->name('bookmarkedpost');

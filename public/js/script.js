@@ -15,7 +15,7 @@ $(document).ready(function() {
         $('#modal-delete').find('.modal-footer').html(`
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             ${form.html()}
-        `)
+                            `)
     });
     $("body").on("submit", "form", function() {
         $(this).submit(function() {
