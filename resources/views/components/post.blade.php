@@ -26,7 +26,15 @@
         <div class="card-subtitle pb-3 mb-3 border-bottom">
                 <a href="{{ route('profileWithUsername', ['username' => $post->user->username]) }}">{{ $post->user->username }}</a> at <span class="text-muted">{{ $post->created_at }}</span>
             </div>
-            <div class="card-text pb-3 mb-3 border-bottom"> {!! $post->content !!} </div>
+            <div class="card-text pb-3 mb-3 border-bottom">
+                <p>{!! $post->content !!}</p>
+                @foreach ($post->tags as $tag)
+                    <span class="badge badge-secondary px-2">{{$tag->name}}</span>
+                @endforeach
+            </div>
+{{--            <div class="card-text pb-3 border-bottom">--}}
+
+{{--            </div>--}}
             <div class="card-text pb-3 mb-3 border-bottom">
                 <div class="row">
                     <div class="col text-center">
@@ -68,6 +76,7 @@
             @endauth
         </div>
     </div>
+
 
 
 

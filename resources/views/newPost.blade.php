@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="text" class="form-control" id="tags" name="tags" data-role="tagsinput">
+                                <input type="text" name="tags" id="tags" data-role="tagsinput">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-outline-success">Submit</button>
