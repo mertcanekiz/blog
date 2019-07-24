@@ -14,11 +14,20 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\TextPost;
+use DB;
 
 Route::middleware('throttle:100,1')->group(function(){
     Route::get('/', function () {
         if (Auth::user()) {
-            return view('home', ['posts' => TextPost::orderBy('created_at', 'desc')->get()]);
+
+           // return view('home', ['posts' => TextPost::orderBy('created_at', 'desc')->get()]);
+            return view('home', ['posts' => TextPost::all()->sortByDesc(function ($product, $key) {
+
+                if(in_array(Auth::id(),$product['likedBy']->pluck("_id")->toArray()))
+                    return count($product['likedBy'])+0.1;
+                else
+                    return count($product['likedBy']);
+            })]);
         }
         return view('welcome');
     })->name('home');

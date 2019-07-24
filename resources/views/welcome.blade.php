@@ -79,11 +79,13 @@
                 </div>
             @endif
 
+
             <div class="content">
                 <div class="title m-b-md">
                     Blog
                 </div>
             </div>
         </div>
+
     </body>
 </html>

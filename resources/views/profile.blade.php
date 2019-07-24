@@ -25,7 +25,7 @@
 {{--            Not logged in--}}
         @endauth
         <div class="row mt-4">
-            <div class="col-md-10">
+            <div class="col">
                 @foreach ($posts as $post)
                     @component('components.post', ['post' => $post])
                     @endcomponent
