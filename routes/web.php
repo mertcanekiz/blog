@@ -14,7 +14,6 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\TextPost;
-use DB;
 
 Route::middleware('throttle:100,1')->group(function(){
     Route::get('/', function () {
@@ -27,10 +26,16 @@ Route::middleware('throttle:100,1')->group(function(){
                     return count($product['likedBy'])+0.1;
                 else
                     return count($product['likedBy']);
-            })]);
+            })->take(4)]);
         }
-        return view('welcome');
-    })->name('home');
+
+        return view('welcome', ['posts' => TextPost::all()->sortByDesc(function ($product, $key) {
+
+            if(in_array(Auth::id(),$product['likedBy']->pluck("_id")->toArray()))
+                return count($product['likedBy'])+0.1;
+            else
+                return count($product['likedBy']);
+        })->take(4)]);    })->name('home');
 });
 
 Auth::routes();
