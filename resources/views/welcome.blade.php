@@ -69,40 +69,38 @@
     @section('content')
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-10 px-0 px-sm-3">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                <div class="content">
+                    <div class="title m-b-md">
+                        Blog
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-end">
+                <div class="col col-lg-6 col-sm-6">
+                    <div class="h2 flex-center">
+                        Last Post
+                    </div>
+<div class="div">
+    @if(count($posts)>0)
+        @foreach ($posts as $post)
+            @component('components.post', ['post' => $post->orderBy('created_at', 'desc')->first()])
+            @endcomponent
+        @endforeach
+        @endif
+</div>
+                </div>
+                <div class="col col-lg-6 col-sm-6">
+                    <div class="h2 flex-center">
+                        Most Liked Post
+                    </div>
+
                     @foreach ($posts as $post)
                         @component('components.post', ['post' => $post])
                         @endcomponent
                     @endforeach
+                        </div>
                 </div>
             </div>
-        </div>
     @endsection
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-            <div class="content">
-                <div class="title m-b-md">
-                    Blog
-                </div>
-            </div>
-        </div>
-
     </body>
 </html>

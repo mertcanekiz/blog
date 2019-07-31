@@ -35,13 +35,13 @@
 {{--            <div class="card-text pb-3 border-bottom">--}}
 
 {{--            </div>--}}
-            <div class="card-text pb-3 mb-3 border-bottom">
+            <div class="card-text pb-3">
                 <div class="row">
                     <div class="col text-center">
                         <button type="button" class="btn text-primary" data-toggle="collapse" data-target="#comment-{{$post->id}}"><i class="far fa-comment"></i></button>
                     </div>
                     <div class="col text-center">
-                        <button id="likebutton-{{$post->id}}" class="btn text-danger"><i class="@auth @if($post->likedBy->find(Auth::user()->id)) fas @else far @endif @else far @endauth fa-heart"></i>&nbsp;{{count($post->likedBy)}}</button>
+                        <button id="likebutton-{{$post->id}}" class="btn text-danger"><i class="@auth @if($post->likedBy->find(Auth::user()->id)) fas @else far @endif @else far @endauth  fa-heart"></i>&nbsp;{{count($post->likedBy)}}</button>
                     </div>
                     <div class="col text-center">
                         <button id="bookmarkbutton-{{$post->id}}" class="btn text-secondary"><i class="@auth @if($post->bookmarkedBy->find(Auth::user()->id)) fas @else far @endif @else far @endauth fa-bookmark"></i></button>

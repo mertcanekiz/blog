@@ -21,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+//
     }
 
     /**
@@ -76,7 +76,6 @@ class PostController extends Controller
         $post = TextPost::find($id);
         return view('singlePost', ['post' => $post]);
     }
-
     public function comment(Request $request, $id)
     {
         $validatedData = $request->validate([
