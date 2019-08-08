@@ -45,6 +45,7 @@ Auth::routes();
 // Profile routes
 Route::middleware('auth', 'throttle:100,1')->group(function () {
     Route::get('/test', 'ProfileController@show');
+    Route::post('/search', 'PostController@search');
     Route::group(['prefix' => 'profile'], function()
     {
         Route::group(['middleware' => 'auth'], function()

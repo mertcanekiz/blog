@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\TextPost;
 use App\Tag;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Input;
 
 class PostController extends Controller
 {
@@ -50,7 +52,8 @@ class PostController extends Controller
         $user = User::find(Auth::user()->id);
         $post = TextPost::create([
             'title' => $validatedData['title'],
-            'content' => $validatedData['content']
+            'content' => $validatedData['content'],
+            'tags' => $validatedData['tags']
         ]);
         foreach (explode(',', $validatedData['tags']) as $tag_data) {
             $tag = Tag::where('name', '=', $tag_data)->first();
@@ -168,6 +171,20 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search(Request $request){
+        $sh =  Input::get('sh');
+        $post = TextPost::where('title','like','%'.$sh.'%')->get();
+        if (count($post)>0)
+        return view('searchPost', ['posts'=>$post ]);
+        else
+            $post = TextPost::where('tags','like','%'.$sh.'%')->get();
+            return view('searchPost', ['posts'=>$post ]);
     }
 
     /**

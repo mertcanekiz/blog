@@ -53,6 +53,25 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="fas fa-search"></i><span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <form method="POST" action='{{url("/search")}}'>
+                                        @csrf
+                                        <div class="input-group">
+                                            <input type="text" name="sh" class="form-control" placeholder="Search">
+                                            <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-dark">
+                                               Go!
+                                            </button>
+                                        </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
                             <li class="nav-item">
                                 <a href="{{ route('notifications') }}" class="nav-link"><i class="fas fa-bell"></i></a>
                             </li>
@@ -70,7 +89,7 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                    {{ Auth::user()->username }}  <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

@@ -9,7 +9,7 @@
                 <div class="col-2">
                     @auth
                         @if($post->user->id == Auth::user()->id)
-                            <button type="button" class="btn text-muted"  data-toggle="modal" id="delete-button-{{$post->id}}"><i class="far fa-trash-alt"></i></button>
+                            <button  type="button" class="btn text-muted"  data-toggle="modal" id="delete-button-{{$post->id}}"><i class="far fa-trash-alt"></i></button>
                             <div class="d-none" id="delete-form">
                                 @if($post->user->id == Auth::user()->id)
                                     <form action="{{ route('posts.destroy', ['id' => $post->id]) }}" method="POST">
@@ -41,10 +41,10 @@
                         <button type="button" class="btn text-primary" data-toggle="collapse" data-target="#comment-{{$post->id}}"><i class="far fa-comment"></i></button>
                     </div>
                     <div class="col text-center">
-                        <button id="likebutton-{{$post->id}}" class="btn text-danger"><i class="@auth @if($post->likedBy->find(Auth::user()->id)) fas @else far @endif @else far @endauth  fa-heart"></i>&nbsp;{{count($post->likedBy)}}</button>
+                        <button  id="likebutton-{{$post->id}}" class="btn text-danger"><i class="@auth @if($post->likedBy->find(Auth::user()->id)) fas @else far @endif @else far @endauth fa-heart"></i>&nbsp;{{count($post->likedBy)}}</button>
                     </div>
                     <div class="col text-center">
-                        <button id="bookmarkbutton-{{$post->id}}" class="btn text-secondary"><i class="@auth @if($post->bookmarkedBy->find(Auth::user()->id)) fas @else far @endif @else far @endauth fa-bookmark"></i></button>
+                        <button id="bookmarkbutton-{{$post->id}}" class="btn text-secondary"><i class="@auth @if($post->bookmarkedBy->find(Auth::user()->id)) fas @else far @endif @else far @endauth   fa-bookmark"></i></button>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 class Tag extends Eloquent
 {
     protected $fillable = [
-        'name','category'
+        'name'
     ];
 
     public function posts()

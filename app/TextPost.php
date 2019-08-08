@@ -12,7 +12,7 @@ class TextPost extends Eloquent
      * @var array
      */
     protected $fillable = [
-        'title', 'content'
+        'title', 'content' , 'tags'
     ];
 
     public function user()
