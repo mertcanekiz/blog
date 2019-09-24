@@ -179,14 +179,23 @@ class PostController extends Controller
      */
     public function search(Request $request){
         $sh =  Input::get('sh');
-        $post = TextPost::where('title','like','%'.$sh.'%')->get();
-        if (count($post)>0)
-        return view('searchPost', ['posts'=>$post ]);
-        else
-            $post = TextPost::where('tags','like','%'.$sh.'%')->get();
-            return view('searchPost', ['posts'=>$post ]);
+        $post = TextPost::whereRaw(['$text' => ['$search' => $sh, '$language'=> 'en']])->project(['score'=>['$meta'=>'textScore']])->orderBy('score', ['$meta' => "textScore"])->get();
+       // return $post;
+        return view('searchPost', ['posts'=>$post]);
+       // else
+         //   $post = TextPost::where('tags','like','%'.$sh.'%')->get();
+           // return view('searchPost', ['posts'=>$post ]);
     }
 
+   // public function search(Request $request){
+     //   $sh =  Input::get('sh');
+       // $post = TextPost::where('title','like','%'.$sh.'%')->get();
+        //if (count($post)>0)
+         //   return view('searchPost', ['posts'=>$post ]);
+        //else
+          //  $post = TextPost::where('tags','like','%'.$sh.'%')->get();
+        //return view('searchPost', ['posts'=>$post ]);
+   // }
     /**
      * Remove the specified resource from storage.
      *
